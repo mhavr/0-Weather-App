@@ -14,7 +14,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OpenWeatherApp2" translatesAutoresizingMaskIntoConstraints="NO" id="u8R-DG-Bh9">
@@ -40,7 +40,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMZ-jc-cTL">
-                                <rect key="frame" x="182" y="801" width="50" height="49"/>
+                                <rect key="frame" x="132" y="800.5" width="50" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" backgroundImage="magnifyingglass.circle.fill" catalog="system"/>
@@ -55,25 +55,200 @@
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7L2-Ec-loj">
+                                <rect key="frame" x="232" y="800.5" width="50" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" backgroundImage="square.and.arrow.down.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="listPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5MT-Bj-w1c"/>
+                                    <action selector="searchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gQ6-w8-l4u"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aLf-XS-8MC"/>
                     <connections>
                         <outlet property="cityLabel" destination="AKj-NJ-vlA" id="0QE-y1-ynM"/>
                         <outlet property="feelsLikeTemperatureLabel" destination="McW-nS-Xo2" id="Qpc-36-014"/>
                         <outlet property="temperatureLabel" destination="J48-dy-OLf" id="gwC-Ec-mND"/>
                         <outlet property="weatherIconImageView" destination="z8g-Ta-Lg3" id="Z9b-HN-D1G"/>
+                        <segue destination="mLu-bL-PSG" kind="show" identifier="cityName" id="PaC-rr-YBQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="93.75"/>
         </scene>
+        <!--Weather Table View Controller-->
+        <scene sceneID="TAo-Ea-WVb">
+            <objects>
+                <tableViewController modalPresentationStyle="fullScreen" id="p8W-8M-yh2" customClass="WeatherTableViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vGk-Xm-65n">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" rowHeight="90" id="I7z-nF-BAP" customClass="WeatherCityTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I7z-nF-BAP" id="Zfi-D1-dWe">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFz-rg-LK6">
+                                            <rect key="frame" x="10" y="6" width="394" height="78"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUM-hj-kqm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="78"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="YUM-hj-kqm" firstAttribute="centerX" secondItem="uFz-rg-LK6" secondAttribute="centerX" id="1d9-cn-1fk"/>
+                                                <constraint firstItem="YUM-hj-kqm" firstAttribute="centerY" secondItem="uFz-rg-LK6" secondAttribute="centerY" id="jZC-EQ-joW"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="uFz-rg-LK6" secondAttribute="bottom" constant="6" id="74j-tf-2LR"/>
+                                        <constraint firstItem="uFz-rg-LK6" firstAttribute="top" secondItem="Zfi-D1-dWe" secondAttribute="top" constant="6" id="GjC-0q-haZ"/>
+                                        <constraint firstItem="uFz-rg-LK6" firstAttribute="leading" secondItem="Zfi-D1-dWe" secondAttribute="leading" constant="10" id="gMj-u8-MVM"/>
+                                        <constraint firstAttribute="trailing" secondItem="uFz-rg-LK6" secondAttribute="trailing" constant="10" id="zSD-du-Rg5"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cityLabel" destination="YUM-hj-kqm" id="hjC-Jt-r2w"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="p8W-8M-yh2" id="hI1-sk-PvW"/>
+                            <outlet property="delegate" destination="p8W-8M-yh2" id="fSA-RF-5Bk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Wti-5d-UQa">
+                        <barButtonItem key="rightBarButtonItem" title=" " style="plain" id="Sm6-o9-T0F">
+                            <connections>
+                                <action selector="addBarButtonItemClicked:" destination="p8W-8M-yh2" id="fBG-w2-O5G"/>
+                                <segue destination="o5g-6N-MKP" kind="show" identifier="addSegue" id="7xB-PO-gD4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addBarButtonItem" destination="Sm6-o9-T0F" id="xwS-KF-RyX"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="shareSwipe" id="iPq-12-93M"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IeE-Ma-jl9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2042.0289855072465" y="93.75"/>
+        </scene>
+        <!--Second Table View Controller-->
+        <scene sceneID="Uzg-HC-OV0">
+            <objects>
+                <tableViewController modalPresentationStyle="fullScreen" id="xzk-Zv-awX" customClass="SecondTableViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qH6-kb-eQL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Press new cityname:" id="VpS-7o-0Vq">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Dxh-jX-ZlP">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dxh-jX-ZlP" id="q42-PG-Rv1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sce-DB-svg">
+                                                    <rect key="frame" x="6" y="2" width="402" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="sce-DB-svg" secondAttribute="bottom" constant="2" id="2Ma-Wa-hp6"/>
+                                                <constraint firstAttribute="trailing" secondItem="sce-DB-svg" secondAttribute="trailing" constant="6" id="5Hp-5r-Luw"/>
+                                                <constraint firstItem="sce-DB-svg" firstAttribute="top" secondItem="q42-PG-Rv1" secondAttribute="top" constant="2" id="PL6-lG-OZM"/>
+                                                <constraint firstItem="sce-DB-svg" firstAttribute="leading" secondItem="q42-PG-Rv1" secondAttribute="leading" constant="6" id="t98-kA-oTt"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="xzk-Zv-awX" id="dAv-7q-8vc"/>
+                            <outlet property="delegate" destination="xzk-Zv-awX" id="z5o-jf-GFQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="mW2-UZ-FJz">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="ovf-eC-ZAy">
+                            <connections>
+                                <action selector="addButtonAction:" destination="xzk-Zv-awX" id="yez-dC-DKo"/>
+                                <segue destination="4ku-Kt-VYh" kind="unwind" unwindAction="unWindSegueToMainScreenWithSegue:" id="OQU-X4-ai2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addButtonOutlet" destination="ovf-eC-ZAy" id="9k8-VM-uc5"/>
+                        <outlet property="cityTextField" destination="sce-DB-svg" id="MxR-9L-Aw4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fSP-Xh-XUF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="4ku-Kt-VYh" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4226.086956521739" y="93.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pqt-CH-LcS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="mLu-bL-PSG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="H1v-H7-pA3"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pQF-73-UY0">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="p8W-8M-yh2" kind="relationship" relationship="rootViewController" id="D3B-cn-IM3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uXy-84-8iu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1131.8840579710145" y="93.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tkm-W4-SoU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o5g-6N-MKP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="enX-f8-jMu"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gB6-ox-NGR">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xzk-Zv-awX" kind="relationship" relationship="rootViewController" id="QJH-Jh-cjx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sq8-9G-2Gp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3315.9420289855075" y="93.75"/>
+        </scene>
     </scenes>
     <resources>
         <image name="OpenWeatherApp2" width="1125" height="2436"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

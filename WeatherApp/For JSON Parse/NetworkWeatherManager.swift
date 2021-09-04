@@ -10,14 +10,10 @@ import Foundation
 
 
 struct NetworkWeatherManager {
-    
     var onCompletion: ((CurrentWeather) -> Void)?
-    
     func fetchCurrentWeather(forCity city:String) {
      
-        let cityName = "Lviv"
-        
-        
+        let cityName = "Ufa"
         let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(appID)&units=metric"
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
@@ -27,7 +23,6 @@ struct NetworkWeatherManager {
                 if let currentWeather = self.parseJSON(withData: data) {
                     self.onCompletion?(currentWeather)
                 }
-            
             }
         }
         task.resume()
@@ -39,12 +34,14 @@ struct NetworkWeatherManager {
             guard let currentWeather = CurrentWeather(currentWeatherData: currentWeatherData) else { return nil }
         return currentWeather
     } catch let error as NSError {
-        print(error.localizedDescription)
+        print(error)
+    }
+        
+        return nil
+        
+        
+        
         
     }
-    
-    
-    return nil
-        }
-    }
+}
 
